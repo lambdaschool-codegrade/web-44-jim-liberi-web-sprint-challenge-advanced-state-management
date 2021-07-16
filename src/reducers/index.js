@@ -1,8 +1,12 @@
 
 export const initialState = {
+    smurfs: []   ,
+    loading: false,
+    errMessage: ''
 }
 
-const reducer = ()=>{
+const reducer = (state=initialState, action)=>{
+    console.log(state);
 }
 
 export default reducer;
