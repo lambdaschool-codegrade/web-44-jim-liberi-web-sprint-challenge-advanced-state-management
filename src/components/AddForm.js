@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchSmurfsAction } from '../actions';
 
-const AddForm = (props) => {
+const AddForm = () => {
+
     const [state, setState] = useState({
         name:"",
         position:"",
         nickname:"",
         description:""
     });
+
+    const dispatch = useDispatch();
+
+    const data = useSelector(state => state)
 
     const handleChange = e => {
         setState({
@@ -16,13 +23,11 @@ const AddForm = (props) => {
     }
 
     const handleSubmit = e => {
-        e.preventDefault();
-        if (state.name === "" || state.position === "" || state.nickname === "") {
-            errorMessage = "Name, position and nickname fields are required.";
-        }
+        e.preventDefault();        
+        dispatch(fetchSmurfsAction.addSmurf(state.name, state.position, state.nickname, state.description));
     }
 
-    const errorMessage = "";
+    const errorMessage = data.errMessage
 
     return(<section>
         <h2>Add Smurf</h2>

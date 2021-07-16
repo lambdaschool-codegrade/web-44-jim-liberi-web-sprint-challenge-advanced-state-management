@@ -10,11 +10,15 @@ import axios from 'axios';
 const fetchSmurfsConstants = {
     FETCH_REQUEST: 'FETCH_REQUEST',
     FETCH_SUCCESS: 'FETCH_SUCCESS',
-    FETCH_FAILURE: 'FETCH_FAILURE'
+    FETCH_FAILURE: 'FETCH_FAILURE',
+
+
+    ADD_REQUEST: 'ADD_REQUEST',
+    ADD_SUCCESS: 'ADD_SUCCESS',
+    ADD_FAILURE: 'ADD_FAILURE',
 }
 
-function fetchSmurfs() {
-    console.log('payload')
+function fetchSmurfs() {    
     return dispatch => {
         axios.get('http://localhost:3333/smurfs').then((res) => {
             if(res) {
@@ -30,6 +34,37 @@ function fetchSmurfs() {
     }
 }
 
+function addSmurf(name, nickname, position, summary) {    
+    return dispatch => {
+        
+        axios.post('http://localhost:3333/smurfs', {
+            name, nickname, position: position, description: summary
+        }).then((res) => {            
+            if(res) {
+                dispatch(success(res.data))
+            }
+        }).catch(res => {            
+            dispatch(failure(res))
+        })
+    };
+
+    function success(data) {
+        return {
+            type: fetchSmurfsConstants.ADD_SUCCESS,
+            data
+        }
+    }
+
+    function failure(err) {        
+        return {
+            type: fetchSmurfsConstants.ADD_FAILURE,
+            err
+        }
+
+    }
+}
+
 export const fetchSmurfsAction = {
-    fetchSmurfs
+    fetchSmurfs,
+    addSmurf
 }

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import AddForm from './components/AddForm';
 import SmurfList from './components/SmurfList';
@@ -11,9 +11,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
 const App = () => {
-
+  const data = useSelector(state => state)
+  
   const dispatch = useDispatch()
-
+  
   useEffect(() => {
     dispatch(fetchSmurfsAction.fetchSmurfs())
   }, [])

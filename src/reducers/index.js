@@ -7,12 +7,26 @@ export const initialState = {
 
 const reducer = (state=initialState, action)=>{
     switch(action.type) {
-        case 'FETCH_SUCCESS':
-            console.log('payload', action.data)
+        case 'FETCH_SUCCESS':            
             return {
                 ...state,
                 smurfs: action.data,
                 loading: true
+            }
+
+    
+        case 'ADD_SUCCESS':
+            
+            return {
+                ...state,
+                smurfs: action.data
+            }
+
+        case 'ADD_FAILURE':            
+        console.log('FADSFADFAD', action.type, action.err.response.data.Error)
+            return {
+                ...state,
+                errMessage: action.err.response.data.Error
             }
         default:
             return state;
