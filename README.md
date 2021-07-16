@@ -63,7 +63,7 @@ In this challenge, you are to build a Smurfs village database utilizing Redux as
 
   * [ ] Add a thunk action called fetchSmurfs that triggers a loading status display in our application, performs an axios call to retreive smurfs from our server, saves the result of that call to our state and shows an error if one is made.
   * [ ] Add a standard action that allows us to add new smurf (including the name, nickname, position, summary).
-  * [ ] Add a standard action that allows us to set the value of the error message slice of state.
+  * [ ] Add a standard action that allcomows us to set the value of the error message slice of state.
   
 #### App.js
   Connect this component to redux **passing in your fetchSmurfs action only.** 
@@ -167,6 +167,15 @@ Example of object created in Smurf DB:
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. Add your answers to the questions within `interview_answers.md` file. These will not be counted as a part of your sprint score but will be helpful for preparing you for your endorsement interview, and enhancing overall understanding.
 
 1. What problem does the context API help solve?
+We use the Context API when we have global data that lots of components share (things like user or theme), or when we have to pass data through intermediate components. The API can help keep your state relatively clean. Context provides a way to share values like these between components without having to explicitly pass a prop through every level of the tree.
+
 2. In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+Actions are the only source of information for the store. It carries a payload of information from your application to store.
+Reducers are a pure function in Redux. Pure functions are predictable. Reducers are the only way to change states in Redux.
+A store is an immutable object tree in Redux. A store is a state container which holds the application’s state. Redux can have only a single store in your application. Whenever a store is created in Redux, you need to specify the reducer.
+
 3. What does `redux-thunk` allow us to do? How does it change our `action-creators`?
+Redux Thunk is middleware that allows you to return functions, rather than just actions, within Redux.
+
 4. What is your favorite state management system you've learned and this sprint? Please explain why!
+I like Redux as it allows one to manage an app's state in a single place.
