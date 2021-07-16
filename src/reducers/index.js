@@ -1,12 +1,22 @@
 
 export const initialState = {
-    smurfs: []   ,
+    smurfs: [],
     loading: false,
-    errMessage: ''
+    errMessage: ""
 }
 
 const reducer = (state=initialState, action)=>{
-    console.log(state);
+    switch(action.type) {
+        case 'FETCH_SUCCESS':
+            console.log('payload', action.data)
+            return {
+                ...state,
+                smurfs: action.data,
+                loading: true
+            }
+        default:
+            return state;
+    }
 }
 
 export default reducer;

@@ -1,14 +1,22 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 import AddForm from './components/AddForm';
 import SmurfList from './components/SmurfList';
 import Header from './components/Header';
 
+import { fetchSmurfsAction } from "./actions";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
-class App extends Component {
-  render() {
+const App = () => {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchSmurfsAction.fetchSmurfs())
+  }, [])
     return (
       <div className="App">
         <Header />
@@ -19,10 +27,10 @@ class App extends Component {
         </main>
       </div>
     );
-  }
+ 
 }
 
-export default App;
+export default App
 
 //Task List:
 //1. Connect the fetchSmurfs actions to the App component.
